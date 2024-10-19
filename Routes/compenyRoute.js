@@ -7,7 +7,7 @@ const {
   updateCompanySettings, // Add this to handle explicit update route
   getTotalCompanies // Add this to get total number of companies
 } = require('../Controller/compenyController');
-
+const { protect } = require('../middleware/Authontication');
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.post('/addcompeny', createCompanySettings);
 router.get('/countcompeny', getTotalCompanies);
 
 // Get Company Settings
-router.get('/getallcompeny', getCompanySettings);
+router.get('/getallcompeny',protect, getCompanySettings);
 // Get Company Settings by ID
 router.get('/getsinglecompeny/:id', getCompanySettingsById);
 
