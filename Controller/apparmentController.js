@@ -41,7 +41,7 @@ exports.createApartment = async (req, res) => {
   
   try {
     // Check if an apartment with the same name already exists
-    const existingApartment = await Apartment.findOne({ name,block });
+    const existingApartment = await Apartment.findOne({ name,block,society });
     
     if (existingApartment) {
       return res.status(400).json({ message: 'This name apartment is already registered' });
@@ -69,7 +69,7 @@ exports.updateApartment = async (req, res) => {
     }
 
     // Check if an apartment with the same name already exists (excluding the current one)
-    const existingApartment = await Apartment.findOne({ name,block, _id: { $ne: id } });
+    const existingApartment = await Apartment.findOne({ name,block,society, _id: { $ne: id } });
     
     if (existingApartment) {
       return res.status(400).json({ message: 'This name apartment is already registered' });
